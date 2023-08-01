@@ -29,7 +29,7 @@ exports.getAll = onRequest(async (req, res) => {
 exports.getByName = onRequest(async (req, res) => {
     const { name } = req.body;
     let data = [];
-    const collRef = await admin.firestore().collection('locations').where('name', '==', name).get();
+    const collRef = await admin.firestore().collection('notes').where('name', '==', name).get();
     collRef.forEach(doc => {
         data.push(doc.data())
     });
@@ -38,7 +38,7 @@ exports.getByName = onRequest(async (req, res) => {
 
 exports.deleteByName = onRequest(async (req, res) => {
     const { name } = req.body;
-    const collRef = await admin.firestore().collection('locations').where('name', '==', name).get();
+    const collRef = await admin.firestore().collection('notes').where('name', '==', name).get();
     collRef.forEach(doc => {
         doc.ref.delete();
     });
@@ -48,7 +48,7 @@ exports.deleteByName = onRequest(async (req, res) => {
 exports.create = onRequest(async (req, res) => {
     const { name, lat, lng, tags } = req.body;
     let data = [];
-    const collRef = await admin.firestore().collection('locations').add({
+    const collRef = await admin.firestore().collection('notes').add({
         name: name,
         lat: lat,
         lng: lng,
