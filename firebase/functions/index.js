@@ -19,7 +19,7 @@ exports.api = onRequest((req, res) => {
 
 exports.getAll = onRequest(async (req, res) => {
     let data = [];
-    const collRef = await admin.firestore().collection('locations').get();
+    const collRef = await admin.firestore().collection('notes').get();
     collRef.forEach(doc => {
         data.push(doc.data())
     });
